@@ -11,9 +11,10 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "Tweet.h"
+#import "TweetCell.h"
 
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDataSource,UITableViewDelegate>
 - (IBAction)didTapLogout:(id)sender;
 
 @end
@@ -22,7 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -36,6 +38,7 @@
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,5 +64,15 @@
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     appDelegate.window.rootViewController = loginViewController;
     [[APIManager shared] logout];
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayOfTweets.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:
+(NSIndexPath *)indexPath {
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    
+    return cell;
 }
 @end

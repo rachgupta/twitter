@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TimelineViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 
 @end
