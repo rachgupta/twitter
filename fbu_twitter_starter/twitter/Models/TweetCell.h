@@ -17,9 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *handle;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *text;
-@property (weak, nonatomic) IBOutlet UILabel *shareNumber;
-@property (weak, nonatomic) IBOutlet UILabel *retweetNumber;
-@property (weak, nonatomic) IBOutlet UILabel *heartNumber;
 @property (strong, nonatomic) Tweet *tweet;
 @end
 
