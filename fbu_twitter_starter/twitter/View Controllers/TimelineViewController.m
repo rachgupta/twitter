@@ -13,6 +13,7 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 
 
 @interface TimelineViewController () <UITableViewDataSource,UITableViewDelegate>
@@ -28,6 +29,13 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     // Get timeline
+    [self fetchTweets];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void) fetchTweets {
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
@@ -41,8 +49,8 @@
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
+    [self.refreshControl endRefreshing];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -83,6 +91,8 @@
     NSLog(@"%@", tweet.user.name);
     cell.handle.text = tweet.user.screenName;
     cell.timeLabel.text = tweet.createdAtString;
+    [cell.favButton setTitle:[NSString stringWithFormat:@"%i",tweet.favoriteCount] forState:UIControlStateNormal];
+    [cell.retweetButton setTitle:[NSString stringWithFormat:@"%i",tweet.retweetCount] forState:UIControlStateNormal];
     
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
