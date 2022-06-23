@@ -141,7 +141,6 @@
                                                     <rect key="frame" x="345" y="94" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Blk-XZ-HGu"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="FIP-LL-Rr8"/>
                                                         <constraint firstAttribute="height" constant="20" id="OU9-hJ-GBB"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
@@ -209,15 +208,28 @@
                     </view>
                     <navigationItem key="navigationItem" id="MOc-fV-EZE">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="xq5-9v-fng">
-                            <rect key="frame" x="136" y="10.666666666666664" width="118" height="35"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Log Out"/>
-                            <connections>
-                                <action selector="didTapLogout:" destination="Lbl-k5-U4i" eventType="touchUpInside" id="IvF-OL-Bhd"/>
-                            </connections>
-                        </button>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="9R7-7C-WWD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="xq5-9v-fng">
+                                <rect key="frame" x="16" y="12.666666666666664" width="136" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log Out"/>
+                                <connections>
+                                    <action selector="didTapLogout:" destination="Lbl-k5-U4i" eventType="touchUpInside" id="IvF-OL-Bhd"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="UlW-bk-Vkp">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Mk5-qB-8pV">
+                                <rect key="frame" x="288" y="7.6666666666666679" width="86" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="edit-icon" title=" "/>
+                                <connections>
+                                    <segue destination="n6R-O7-Y4G" kind="show" id="UIi-e8-wiZ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="MDT-Mk-PeU" id="PLQ-OR-zId"/>
@@ -269,16 +281,19 @@
                     <navigationItem key="navigationItem" id="CA1-AG-FRX">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="yvH-hJ-qIw">
                             <connections>
-                                <action selector="closeCompose:" destination="n6R-O7-Y4G" id="3ur-mI-hEZ"/>
+                                <action selector="closeCompose:" destination="n6R-O7-Y4G" id="RAZ-iV-c8a"/>
+                                <segue destination="bdU-Pp-K2Y" kind="presentation" id="1Oo-sl-bqH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="64A-pQ-fJa">
                             <connections>
-                                <action selector="tweetNew:" destination="n6R-O7-Y4G" id="Zyb-Hh-V1z"/>
-                                <segue destination="bdU-Pp-K2Y" kind="presentation" id="33s-Mz-N0X"/>
+                                <action selector="tweetPost:" destination="n6R-O7-Y4G" id="v6q-7j-X6N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textToPost" destination="6Ws-mF-8yP" id="Uq5-uG-d7G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="162-RN-N4q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -304,10 +319,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="33s-Mz-N0X"/>
+        <segue reference="UIi-e8-wiZ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="TwitterLogoBlue" width="133.33332824707031" height="133.33332824707031"/>
+        <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
         <image name="home-icon" width="30" height="30"/>
         <image name="message-icon" width="30" height="30"/>
