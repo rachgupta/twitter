@@ -15,6 +15,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIKit+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "DetailsViewController.h"
 
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -63,9 +64,31 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
  */
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+     if([segue.identifier isEqual:@"detailSegue"])
+    {
+        NSIndexPath *myPath = [self.tableView indexPathForCell:sender];
+        Tweet *dataToPass = self.arrayOfTweets[myPath.row];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.tweet = dataToPass;
+    }
+    else if ([segue.identifier isEqual:@"composeSegue"])
+    {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+     /*
+      -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+          NSIndexPath *myPath = [self.tableView indexPathForCell:sender];
+          NSDictionary *dataToPass = self.filteredMovies[myPath.row];
+          DetailsViewController *detailVC = [segue destinationViewController];
+          detailVC.detailDict = dataToPass;
+          
+          // (NSIndexPath *)indexPathForCell:(UITableViewCell *)cell;
+          // Get the new view controller using [segue destinationViewController].
+          // Pass the selected object to the new view controller.
+      }
+      */
 }
 
 
@@ -100,7 +123,6 @@
     //[cell.retweetButton setTitle:[NSString stringWithFormat:@"%i",tweet.retweetCount] forState:UIControlStateNormal];
     
     NSURL *url = [NSURL URLWithString:URLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
     [cell.profilePhoto setImageWithURL:url];
     
     return cell;
