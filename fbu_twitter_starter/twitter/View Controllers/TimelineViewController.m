@@ -62,13 +62,12 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
  */
-/*
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *navigationController = [segue destinationViewController];
     ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
     composeController.delegate = self;
 }
- */
+
 
 - (IBAction)didTapLogout:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -94,8 +93,9 @@
     NSLog(@"%@", tweet.user.name);
     cell.handle.text = tweet.user.screenName;
     cell.timeLabel.text = tweet.createdAtString;
-    [cell.favButton setTitle:[NSString stringWithFormat:@"%i",tweet.favoriteCount] forState:UIControlStateNormal];
-    [cell.retweetButton setTitle:[NSString stringWithFormat:@"%i",tweet.retweetCount] forState:UIControlStateNormal];
+    [cell refreshData];
+    //[cell.favButton setTitle:[NSString stringWithFormat:@"%i",tweet.favoriteCount] forState:UIControlStateNormal];
+    //[cell.retweetButton setTitle:[NSString stringWithFormat:@"%i",tweet.retweetCount] forState:UIControlStateNormal];
     
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -106,8 +106,9 @@
 
 - (void)didTweet:(Tweet *)tweet
 {
-    [self.arrayOfTweets addObject:tweet];
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 @end
