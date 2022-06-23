@@ -8,6 +8,7 @@
 
 #import "TweetCell.h"
 #import "APIManager.h"
+#import "DateTools.h"
 
 @implementation TweetCell
 - (IBAction)didTapFavorite:(id)sender {
@@ -91,12 +92,15 @@
     }
     [self.favButton setTitle:[NSString stringWithFormat:@"%i",self.tweet.favoriteCount] forState:UIControlStateNormal];
     [self.retweetButton setTitle:[NSString stringWithFormat:@"%i",self.tweet.retweetCount] forState:UIControlStateNormal];
+    //NSString *prev
+    self.timeLabel.text = self.tweet.createdAtDate.shortTimeAgoSinceNow;
     
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

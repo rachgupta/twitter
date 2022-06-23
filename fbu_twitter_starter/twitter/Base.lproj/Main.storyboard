@@ -271,10 +271,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Let's tweet!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Ws-mF-8yP">
-                                <rect key="frame" x="75" y="113" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text=" " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Ws-mF-8yP">
+                                <rect key="frame" x="75" y="116" width="240" height="125"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="tintColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="Snp-u9-yjZ"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -282,6 +285,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="n9g-xe-OPL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Ws-mF-8yP" firstAttribute="top" secondItem="n9g-xe-OPL" secondAttribute="top" constant="60" id="Fl3-Tk-xls"/>
+                            <constraint firstItem="6Ws-mF-8yP" firstAttribute="leading" secondItem="n9g-xe-OPL" secondAttribute="leading" constant="75" id="LGE-IV-USU"/>
+                            <constraint firstItem="n9g-xe-OPL" firstAttribute="trailing" secondItem="6Ws-mF-8yP" secondAttribute="trailing" constant="75" id="zLD-St-GPQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CA1-AG-FRX">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="yvH-hJ-qIw">
@@ -335,6 +343,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

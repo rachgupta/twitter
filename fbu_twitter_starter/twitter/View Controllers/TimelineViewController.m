@@ -91,7 +91,9 @@
     NSLog(@"%@", tweet.text);
     cell.username.text = tweet.user.name;
     NSLog(@"%@", tweet.user.name);
-    cell.handle.text = tweet.user.screenName;
+    NSString *at = @"@";
+    cell.handle.text = [NSString stringWithFormat:@"%@%@", at, tweet.user.screenName];
+    //cell.handle.text = tweet.user.screenName;
     cell.timeLabel.text = tweet.createdAtString;
     [cell refreshData];
     //[cell.favButton setTitle:[NSString stringWithFormat:@"%i",tweet.favoriteCount] forState:UIControlStateNormal];
