@@ -94,6 +94,8 @@
     [self.retweetButton setTitle:[NSString stringWithFormat:@"%i",self.tweet.retweetCount] forState:UIControlStateNormal];
     //NSString *prev
     self.timeLabel.text = self.tweet.createdAtDate.shortTimeAgoSinceNow;
+    self.profilePhoto.layer.cornerRadius  = self.profilePhoto.frame.size.width/2;
+    self.profilePhoto.clipsToBounds = YES;
     
 }
 - (void)awakeFromNib {

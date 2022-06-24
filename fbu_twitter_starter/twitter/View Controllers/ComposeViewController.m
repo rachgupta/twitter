@@ -32,7 +32,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.textToPost.delegate = self;
+    self.textToPost.layer.borderWidth = 2.0f;
+    self.textToPost.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.textToPost.layer.cornerRadius = 5;
     // Do any additional setup after loading the view.
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    int characterLimit = 140;
+
+    // Construct what the new text would be if we allowed the user's latest edit
+    NSString *newText = [self.textToPost.text stringByReplacingCharactersInRange:range withString:text];
+    // TODO: Update character count label
+    NSInteger *numLeft =(140-newText.length);
+    self.charCount.text = [NSString stringWithFormat:@"%d chars left", numLeft];;
+    // Should the new text should be allowed? True/False
+    return newText.length < characterLimit;
 }
 
 /*

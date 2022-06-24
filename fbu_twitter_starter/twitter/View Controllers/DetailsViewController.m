@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIKit+AFNetworking.h"
 #import "APIManager.h"
+#import "DateTools.h"
 
 @interface DetailsViewController ()
 
@@ -88,6 +89,10 @@
     self.handle.text = [NSString stringWithFormat:@"%@%@", at, self.tweet.user.screenName];
     //cell.handle.text = tweet.user.screenName;
     self.date.text = self.tweet.createdAtString;
+    self.profPhoto.layer.cornerRadius  = self.profPhoto.frame.size.width/2;
+    self.profPhoto.clipsToBounds = YES;
+    self.timestamp.text = self.tweet.createdAtTime;
+    
     // Do any additional setup after loading the view.
     [self refreshData];
 }
